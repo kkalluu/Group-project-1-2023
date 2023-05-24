@@ -1,99 +1,53 @@
-#Travel Agent - Group Project 1
-#Authors: Kaitlyn Lum
-#Date: May 21, 2023
-
-
-#Travel bot will help user create a trip based on their input using the program. 
-
-
-#greeting for user 
+# Greeting for user 
 print('Welcome! I am your friendly travel agent bot.\nI will ask you some questions, and make a\n'\
 'recommendation based on your answer.\nIf you are interested , I will provide you\n'\
 'with a one - time password to create a user\naccount on our website .\n')
 
+# Ask user for name and greet user
+userName = input("What is your name? --> ")
+print("Hello dear " + userName + "!\n")
 
-#Ask user for name and will say "Hello dear " + the name of user
-name=input("What is your name? --> ")
-print("Hello dear " + name + " !\n")
-
-
-#Ask user for age
-age=input("What is your age? --> ")
-age_int=int(age)
-
+# Ask user for age
+userAge = int(input("What is your age? --> "))
 
 #calculates the discount if user is a senior (over 64 in age)
-senior_discount=0
-if age_int > 64:
-    senior_discount=(age_int-64)/100
-    print("""Great ! We offer a senior discount.\nFor every year over 64 , you get 1% off .""")
-else: senior_discount=0
+seniorDiscount=0
+if userAge > 64:
+    seniorDiscount=(userAge-64)/100
+    print("Great! We offer a senior discount.\nFor every year over 64, you get 1% off.")
+else: seniorDiscount=0
 
- 
-#Ask how many nights user will stay on vacation
-number_of_nights=input("\nFor how many nights do you want to stay? --> ")
-number_of_nights_int= int(number_of_nights)
+# Ask user how many nights they want to stay
+userNights = int(input("\nFor how many nights do you want to stay? --> "))
 
+# Ask whether the user is interested in culture and classical music, or beaches and surfing
+userCulture = input("Do you like culture and classical music?\nPlease answer y/n. --> ")
+userActivity = input("Do you like beaches and surfing?\nPlease answer y/n. --> ")
 
-#Asks user what activities they would like to do on this trip
-cultural_activities= input("Do you like culture and classical music?\nPlease answer y/n. --> ")
-beach_activities= input("Do you like beaches and surfing?\nPlease answer y/n. --> ")
+# Function to calculate total Bali cost
+flightVienna = 997.93
+hotelVienna = 143.84
 
+def viennaTotal():
+    totalVienna = (flightVienna + hotelVienna * userNights) * (1-seniorDiscount)
+    print(str(totalVienna)+ "$")
 
-#decides which destination for vacation is best for the user based preferences for activities
-#activity input lets us know which combination they of y and n they inputted for the activities question asked above
-if cultural_activities == "y" and beach_activities == "y" :
-    actvities_input=1
+def baliTotal():
+    flightBali = 849.93
+    hotelBali = 235.35
+    totalBali = (flightBali + hotelBali * userNights) * (1-seniorDiscount)
+    print(totalBali)
 
-elif cultural_activities =="y" and beach_activities == "n":
-    actvities_input=2
+# Function to display standard Vienna costs
+def viennaInfo():
+    print("\nHow about a trip to Vienna?")
+    print("Flight: " + str(flightVienna) + "$")
+    print("Hotel: " + str(hotelVienna) + "$/night")
+    print("Discount: " + str(int(seniorDiscount)) + "%")
+    print("Total for", str(userNights) , " nights (incl. discounts): ", end="")
 
-elif cultural_activities=="n" and beach_activities =="y" :
-    actvities_input=3
-
-elif cultural_activities=="n" and beach_activities == "n" :
-    actvities_input=4
-
-
-#calculates the total cost of the trip if user likes culture and beaches. Suggests the more expensive trip to user
-if actvities_input==1:
-
-    flight_vienna=997.93
-    nights_in_vienna_cost=number_of_nights_int*143.84
-    trip_total_vienna=(flight_vienna+nights_in_vienna_cost)*(1-senior_discount)
-    trip_vienna_total_rounded=round(trip_total_vienna,2)
-
-    flight_bali=849.93
-    nights_in_bali_cost=number_of_nights_int*235.35
-    trip_total_bali=(flight_bali+nights_in_bali_cost)*(1-senior_discount)
-    trip_total_bali_rounded=round(trip_total_bali,2)
-
-    if trip_total_vienna > trip_total_bali:        
-        print("How about a trip to Vienna?")
-        trip_total_vienna_rounded=round(trip_total_vienna,2)
-        print("total cost will be $" ,trip_vienna_total_rounded)
-
-    else:        
-        print("How about a trip to Bali?\nYour total cost of the trip will be $", trip_total_bali_rounded)
-
-
-#calculates trip total cost if user likes culture but not beaches...suggests to go to Vienna to user
-elif actvities_input ==2:
-    flight_vienna=997.93
-    nights_in_vienna_cost=number_of_nights_int*143.84
-    trip_total_vienna=(flight_vienna+nights_in_vienna_cost)*(1-senior_discount)
-    trip_vienna_total_rounded=round(trip_total_vienna,2)
-    print("your trip total to Vienna will be $",trip_vienna_total_rounded)
-
-
-#calculates trip total cost if user likes beaches but not culture...suggests to go to Bali to user
-elif actvities_input ==3:
-    flight_bali=849.93
-    nights_in_bali_cost=number_of_nights_int*235.35
-    trip_total_bali=(flight_bali+nights_in_bali_cost)*(1-senior_discount)
-    trip_total_bali_rounded=round(trip_total_bali,2)
-    print("your trip total to Bali will be $",trip_total_bali_rounded)
-
-
-#Tells user travel bot has no trips to offer because user doesn't like culture nor beaches
-else:print("I am sorry, we don't have any trips to offer at this point.")
+# Make recommendations based on user's responses
+# If user prefers culture over beach -> Vienna
+if userCulture == 'y' and userActivity == 'n':
+    viennaInfo()
+    viennaTotal()
