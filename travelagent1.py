@@ -33,6 +33,7 @@ hotelBali = 235.35
 # Function to calculate total Vienna cost
 def viennaTotal():
     totalVienna = (flightVienna + hotelVienna * userNights) * (1-seniorDiscount)
+    totalVienna=round(totalVienna,2)
     print(str(totalVienna)+ "$")
     return totalVienna
     
@@ -40,6 +41,7 @@ def viennaTotal():
 # Function to calculate total Bali cost
 def baliTotal():
     totalBali = (flightBali + hotelBali * userNights) * (1-seniorDiscount)
+    totalBali=round(totalBali,2)
     print(str(totalBali)+ "$")
     return totalBali
     
@@ -93,6 +95,5 @@ else:
 
 #password for user
 #get the first letter of their name
-#k
-# firstLetterO
-#print(userName[0])
+
+print(userName[0])
