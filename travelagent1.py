@@ -1,3 +1,10 @@
+#travel agent
+#Authors: Anna Fong and Kaitlyn Lum
+#May 25, 2023
+
+
+import random
+
 # Greeting for user 
 print('Welcome! I am your friendly travel agent bot.\nI will ask you some questions, and make a\n'\
 'recommendation based on your answer.\nIf you are interested , I will provide you\n'\
@@ -32,18 +39,18 @@ hotelBali = 235.35
 
 # Function to calculate total Vienna cost
 def viennaTotal():
-    totalVienna = (flightVienna + hotelVienna * userNights) * (1-seniorDiscount)
-    totalVienna=round(totalVienna,2)
-    print(str(totalVienna)+ "$")
-    return totalVienna
+    rTotalVienna = (flightVienna + hotelVienna * userNights) * (1-seniorDiscount)
+    rTotalVienna=round(rTotalVienna,2)
+    print(str(rTotalVienna)+ "$")
+    return rTotalVienna
     
 
 # Function to calculate total Bali cost
 def baliTotal():
-    totalBali = (flightBali + hotelBali * userNights) * (1-seniorDiscount)
-    totalBali=round(totalBali,2)
-    print(str(totalBali)+ "$")
-    return totalBali
+    rTotalBali = (flightBali + hotelBali * userNights) * (1-seniorDiscount)
+    rTotalBali=round(rTotalBali,2)
+    print(str(rTotalBali)+ "$")
+    return rTotalBali
     
 
 # Function to display standard Vienna costs
@@ -90,10 +97,22 @@ else:
         baliInfo()
         baliTotal()
 
- 
 
+# Ask user if they are interested in creating a user account
+userAccount = input("\nAre you interested, and want to create a user account?\nPlease answer y/n: --> ")
 
-#password for user
-#get the first letter of their name
+# If no, display an apology message
+if userAccount == 'n':
+    print("Sorry to hear that. Please consider using our service again.")
 
-print(userName[0])
+# If yes, create a password for the user
+elif userAccount == 'y':
+    lastLetter = userName[-1] 
+    beginningPassword = lastLetter * (userAge % 8)
+    middlePassword = userName[0]
+    endPassword = random.randint(1,5) * "!"
+    password = beginningPassword + middlePassword + endPassword
+    print("Looking forward to working with you!\nYour one-time password is: " + password)
+
+# Display goodbye message
+    print("\nGoodbye.")
