@@ -24,19 +24,25 @@ userNights = int(input("\nFor how many nights do you want to stay? --> "))
 userCulture = input("Do you like culture and classical music?\nPlease answer y/n. --> ")
 userActivity = input("Do you like beaches and surfing?\nPlease answer y/n. --> ")
 
-# Function to calculate total Bali cost
+# Variables to store cost information
 flightVienna = 997.93
 hotelVienna = 143.84
+flightBali = 849.93
+hotelBali = 235.35
 
+# Function to calculate total Vienna cost
 def viennaTotal():
     totalVienna = (flightVienna + hotelVienna * userNights) * (1-seniorDiscount)
     print(str(totalVienna)+ "$")
+    return totalVienna
+    
 
+# Function to calculate total Bali cost
 def baliTotal():
-    flightBali = 849.93
-    hotelBali = 235.35
     totalBali = (flightBali + hotelBali * userNights) * (1-seniorDiscount)
-    print(totalBali)
+    print(str(totalBali)+ "$")
+    return totalBali
+    
 
 # Function to display standard Vienna costs
 def viennaInfo():
@@ -46,8 +52,47 @@ def viennaInfo():
     print("Discount: " + str(int(seniorDiscount)) + "%")
     print("Total for", str(userNights) , " nights (incl. discounts): ", end="")
 
+# Function to display standard Bali costs
+def baliInfo():
+    print("\nHow about a trip to Bali?")
+    print("Flight: " + str(flightBali) + "$")
+    print("Hotel: " + str(hotelBali) + "$/night")
+    print("Discount: " + str(int(seniorDiscount)) + "%")
+    print("Total for", str(userNights) , " nights (incl. discounts): ", end="")
+
 # Make recommendations based on user's responses
-# If user prefers culture over beach -> Vienna
+# If user prefers culture over beach, recommend Vienna
 if userCulture == 'y' and userActivity == 'n':
     viennaInfo()
     viennaTotal()
+
+# If user prefers beach over culture, recommend Bali
+elif userCulture == 'n' and userActivity == 'y':
+    baliInfo()
+    baliTotal()
+
+# If user prefers neither culture or beach, recommend none
+elif userCulture == 'n' and userActivity == 'n':
+    print("\nI am sorry, we don't have any trips to offer at this point.")
+
+
+# If user prefers both culture and beaches, calculate more expensive trip and offer that to the user
+else: 
+    #if the trip to Vienna is more expensive, suggest this trip to the user
+    if viennaTotal()>baliTotal():
+        viennaInfo()
+        viennaTotal()
+
+    #when the price for bali is more expensive, suggest going to Bali to user
+    else: 
+        baliInfo()
+        baliTotal()
+
+ 
+
+
+#password for user
+#get the first letter of their name
+#k
+# firstLetterO
+#print(userName[0])
