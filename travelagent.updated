@@ -41,7 +41,7 @@ hotelBali = 235.35
 def viennaTotal():
     rTotalVienna = (flightVienna + hotelVienna * userNights) * (1-seniorDiscount)
     rTotalVienna=round(rTotalVienna,2)
-    print(str(rTotalVienna)+ "$")
+    print(str(rTotalVienna) + "$")
     return rTotalVienna
     
 
@@ -49,9 +49,8 @@ def viennaTotal():
 def baliTotal():
     rTotalBali = (flightBali + hotelBali * userNights) * (1-seniorDiscount)
     rTotalBali=round(rTotalBali,2)
-    print(str(rTotalBali)+ "$")
+    print(str(rTotalBali) + "$")
     return rTotalBali
-    
 
 # Function to display standard Vienna costs
 def viennaInfo():
@@ -87,8 +86,18 @@ elif userCulture == 'n' and userActivity == 'n':
 
 # If user prefers both culture and beaches, calculate more expensive trip and offer that to the user
 else: 
+
+    #Re-write total costs of the trips. Must re-write lines to pull these variables out of the function to use
+    rTotalVienna = (flightVienna + hotelVienna * userNights) * (1-seniorDiscount)
+    rTotalVienna=round(rTotalVienna,2)
+
+    rTotalBali = (flightBali + hotelBali * userNights) * (1-seniorDiscount)
+    rTotalBali=round(rTotalBali,2)
+
+
     #if the trip to Vienna is more expensive, suggest this trip to the user
-    if viennaTotal()>baliTotal():
+    #this prints out the totals when doing this kind of comparison
+    if rTotalVienna>rTotalBali:
         viennaInfo()
         viennaTotal()
 
