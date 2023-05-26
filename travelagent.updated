@@ -115,13 +115,13 @@ if userAccount == 'n':
     print("Sorry to hear that. Please consider using our service again.")
 
 # If yes, create a password for the user
-elif userAccount == 'y':
-    lastLetter = userName[-1] 
-    beginningPassword = lastLetter * (userAge % 8)
-    middlePassword = userName[0]
-    endPassword = random.randint(1,5) * "!"
-    password = beginningPassword + middlePassword + endPassword
-    print("Looking forward to working with you!\nYour one-time password is: " + password)
+else: userAccount == 'y'
+lastLetter = userName[-1] 
+beginningPassword = lastLetter * (userAge % 8)
+middlePassword = userName[0]
+endPassword = random.randint(1,5) * "!"
+password = beginningPassword + middlePassword + endPassword
+print("Looking forward to working with you!\nYour one-time password is: " + password)
 
 # Display goodbye message
-    print("\nGoodbye.")
+print("\nGoodbye.")
