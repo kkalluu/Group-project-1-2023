@@ -31,27 +31,27 @@ userNights = int(input("\nFor how many nights do you want to stay? --> "))
 userCulture = input("Do you like culture and classical music?\nPlease answer y/n. --> ")
 userActivity = input("Do you like beaches and surfing?\nPlease answer y/n. --> ")
 
-# Variables to store cost information
+# Information for flight and hotel of the trips
 flightVienna = 997.93
 hotelVienna = 143.84
 flightBali = 849.93
 hotelBali = 235.35
 
-# Function to calculate total Vienna cost
+# Function calculating total cost of Vienna trip
 def viennaTotal():
     totalVienna = (flightVienna + hotelVienna * userNights) * (1-seniorDiscount)
     rTotalVienna = round(totalVienna,2)
     print(str(rTotalVienna) + "$")
     return totalVienna
 
-# Function to calculate total Bali cost
+# Function to calculate total cost of Bali trip
 def baliTotal():
     totalBali = (flightBali + hotelBali * userNights) * (1-seniorDiscount)
     rTotalBali = round(totalBali,2)
     print(str(rTotalBali) + "$")
     return totalBali
 
-# Function to display standard Vienna costs
+# Function to display break down of the Vienna trip total
 def viennaInfo():
     print("\nHow about a trip to Vienna?")
     print("Flight: " + str(flightVienna) + "$")
@@ -59,7 +59,7 @@ def viennaInfo():
     print("Discount: " + str(int(seniorDiscount*100)) + "%")
     print("Total for", str(userNights) , "nights (incl. discounts): ", end="")
 
-# Function to display standard Bali costs
+# Function to display break down of the Bali trip total
 def baliInfo():
     print("\nHow about a trip to Bali?")
     print("Flight: " + str(flightBali) + "$")
@@ -68,17 +68,17 @@ def baliInfo():
     print("Total for", str(userNights) , "nights (incl. discounts): ", end="")
 
 # Make recommendations based on user's responses
-# If user prefers culture over beach, recommend Vienna
+# If user prefers culture over beach, recommend trip to Vienna
 if userCulture == 'y' and userActivity == 'n':
     viennaInfo()
     viennaTotal()
 
-# If user prefers beach over culture, recommend Bali
+# If user prefers beach over culture, recommend trip to Bali
 elif userCulture == 'n' and userActivity == 'y':
     baliInfo()
     baliTotal()
 
-# If user prefers neither culture or beach, recommend none
+# If user prefers neither culture or beach, tell user there's no trips to offer them
 elif userCulture == 'n' and userActivity == 'n':
     print("\nI am sorry, we don't have any trips to offer at this point.")
 
@@ -89,7 +89,6 @@ else:
     totalBali = (flightBali + hotelBali * userNights) * (1-seniorDiscount)
 
     # If the trip to Vienna is more expensive, suggest this trip to the user
-    # This prints out the totals when doing this kind of comparison
     if totalVienna>totalBali:
         viennaInfo()
         viennaTotal()
